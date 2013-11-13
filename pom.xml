@@ -10,7 +10,7 @@
         a reference jpa bassed implementation using hibernate.
     </description>
 
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 
     <inceptionYear>2011</inceptionYear>
 
@@ -129,6 +129,6 @@
         </site>
     </distributionManagement>
     <scm>
-        <developerConnection>scm:svn:https://barricada.hi.inet/repositorio/boi/europ-iaas/util/commons-dao/tags/commons-dao-1.1.0</developerConnection>
+        <developerConnection>scm:svn:https://barricada.hi.inet/repositorio/boi/europ-iaas/util/commons-dao/tags/commons-dao-1.1.1</developerConnection>
     </scm>
 </project>
