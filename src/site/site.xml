@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Comons Dao">
+    <bannerLeft>
+        <name>SCD Server</name>
+        <src>img/logo.png</src>
+        <href>index.html</href>
+    </bannerLeft>
+    <bannerRight>
+        <name>TID</name>
+        <src>http://www.crandsustainability.telefonica.com/includes/css/images/lgo_telefonica_main.gif</src>
+        <href>http://www.tid.es</href>
+    </bannerRight>
+
+    <body>
+        <menu name="Documentation">
+            <item name="Index" href="index.html" />
+        </menu>
+        ${reports}
+    </body>
+</project>
