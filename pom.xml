@@ -45,6 +45,8 @@
         <repoSiteName>repo-site</repoSiteName>
         <repoSiteUrl>${ciURI}</repoSiteUrl>
 
+        <maven-license-plugin.version>1.2.5</maven-license-plugin.version>
+
     </properties>
 
     <scm>
@@ -75,6 +77,27 @@
 
     <build>
         <plugins>
+            <!-- license plugin -->
+
+            <plugin>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>${maven-license-plugin.version}</version>
+                <configuration>
+                    <header>src/license/fiware/header.txt</header>
+                    <includes>
+                        <include>src/main/**/*.java</include>
+                        <include>src/test/**/*.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
