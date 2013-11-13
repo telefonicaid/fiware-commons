@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.telefonica.euro_iaas</groupId>
@@ -7,29 +8,55 @@
     <name>Commons Dao</name>
     <description>
         Provides a common interface to implement new Dao objects. Even provides
-        a reference jpa bassed implementation using hibernate.
+        a reference jpa based implementation using hibernate.
     </description>
 
-    <version>1.1.1</version>
+    <version>1.2.0</version>
 
     <inceptionYear>2011</inceptionYear>
 
-    <developers>
-        <developer>
-            <id>sergio</id>
-            <name>Sergio Arroyo</name>
-            <email>sergio.arroyo@tic.alten.com
-            </email>
-            <roles>
-                <role>soft. architect</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
+    <url>${ciURI}/sites/fiware/${project.artifactId}</url>
+
+    <properties>
+
+        <repoName>fiware-commonsdao</repoName>
+        <scmURI>git@pdihub.hi.inet:fiware</scmURI>
+        <ciURI>http://ci-fiware-01.hi.inet</ciURI>
+        <issueURI>https://jirapdi.tid.es/browse</issueURI>
+        <nexusRepositories>${ciURI}/nexus/content/repositories</nexusRepositories>
+        <continousIntegrationSystemUrl>${ciURI}/jenkins</continousIntegrationSystemUrl>
+        <continousIntegrationSystemProjectName>${repoName}</continousIntegrationSystemProjectName>
+
+        <!-- repositories for distribution -->
+        <!-- snapshots -->
+        <repoMavenSnapshotId>repo-snapshot</repoMavenSnapshotId>
+        <repoMavenSnapshotName>repo-snapshot</repoMavenSnapshotName>
+        <repoMavenSnapshotUrl>${nexusRepositories}/snapshots</repoMavenSnapshotUrl>
+        <!-- releases -->
+        <repoMavenId>repo-release</repoMavenId>
+        <repoMavenName>repo-release</repoMavenName>
+        <repoMavenUrl>${nexusRepositories}/releases</repoMavenUrl>
+        <!-- thirdparty -->
+        <repoMavenThirdpartyId>repo-third-party-release</repoMavenThirdpartyId>
+        <repoMavenThirdpartyName>repo-third-party-release</repoMavenThirdpartyName>
+        <repoMavenThirdpartyUrl>${nexusRepositories}/thirdparty</repoMavenThirdpartyUrl>
+        <!-- site -->
+        <repoSiteId>nexus-site-repository</repoSiteId>
+        <repoSiteName>repo-site</repoSiteName>
+        <repoSiteUrl>${ciURI}</repoSiteUrl>
+
+    </properties>
+
+    <scm>
+        <connection>scm:git:${scmURI}/${repoName}.git</connection>
+        <developerConnection>scm:git:${scmURI}/${repoName}.git</developerConnection>
+        <url>${scmURI}/${repoName}.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <issueManagement>
         <system>Jira</system>
-        <url>https://jira.tid.es/browse/CLAUDIA</url>
+        <url>${issueURI}/CLAUDIA</url>
     </issueManagement>
 
     <dependencies>
@@ -54,8 +81,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.1</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
 
@@ -108,27 +135,30 @@
     </reporting>
 
     <distributionManagement>
-        <!-- Repositorio para hacer el deploy de las releases -->
+
+        <!-- RPM Releases Repository -->
         <repository>
             <id>${repoMavenId}</id>
             <name>${repoMavenName}</name>
             <url>${repoMavenUrl}</url>
+            <uniqueVersion>false</uniqueVersion>
         </repository>
-        <!--Don't want deploy snapshots -->
-        <!--
-            <snapshotRepository> <id>${repoMavenSnapshotId}</id>
+
+        <!-- RPM Snapshots Repository -->
+        <snapshotRepository>
+            <id>${repoMavenSnapshotId}</id>
             <name>${repoMavenSnapshotName}</name>
-            <url>${repoMavenSnapshotUrl}</url> </snapshotRepository>
-        -->
-        <!-- Maquina donde se publica el site del proyecto -->
+            <url>${repoMavenSnapshotUrl}</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+
+        <!-- Project Site -->
         <site>
             <id>${repoSiteId}</id>
             <name>${repoSiteName}</name>
-            <url>${repoSiteUrl}/${project.groupId}/${project.artifactId}/${project.version}
-               </url>
+            <url>${repoSiteUrl}/fiware/${project.artifactId}</url>
         </site>
+
     </distributionManagement>
-    <scm>
-        <developerConnection>scm:svn:https://barricada.hi.inet/repositorio/boi/europ-iaas/util/commons-dao/tags/commons-dao-1.1.1</developerConnection>
-    </scm>
+
 </project>
