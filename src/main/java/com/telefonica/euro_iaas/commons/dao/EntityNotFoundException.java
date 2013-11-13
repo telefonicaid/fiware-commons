@@ -1,3 +1,10 @@
+/**
+ * (c) Copyright 2013 Telefonica, I+D. Printed in Spain (Europe). All Rights Reserved.<br>
+ * The copyright to the software program(s) is property of Telefonica I+D. The program(s) may be used and or copied only
+ * with the express written consent of Telefonica I+D or in accordance with the terms and conditions stipulated in the
+ * agreement/contract under which the program(s) have been supplied.
+ */
+
 package com.telefonica.euro_iaas.commons.dao;
 
 /**
@@ -10,7 +17,7 @@ public class EntityNotFoundException extends Exception {
 
     /**
      * Constructor of the class.
-     *
+     * 
      * @param entity
      *            The requested entity
      * @param primaryKeyFieldName
@@ -19,15 +26,13 @@ public class EntityNotFoundException extends Exception {
      *            The value of the primary key attribute
      */
     @SuppressWarnings("unchecked")
-    public EntityNotFoundException(Class entity, String primaryKeyFieldName,
-            Object primaryKeyFieldValue) {
-        this(entity, new String[] { primaryKeyFieldName },
-                new Object[] { primaryKeyFieldValue });
+    public EntityNotFoundException(Class entity, String primaryKeyFieldName, Object primaryKeyFieldValue) {
+        this(entity, new String[] { primaryKeyFieldName }, new Object[] { primaryKeyFieldValue });
     }
 
     /**
      * Constructor of the class.
-     *
+     * 
      * @param entity
      *            The requested entity
      * @param primaryKeyFieldNames
@@ -36,11 +41,10 @@ public class EntityNotFoundException extends Exception {
      *            The values of all the primary key fields
      */
     @SuppressWarnings("unchecked")
-    public EntityNotFoundException(Class entity, String[] primaryKeyFieldNames,
-            Object[] primaryKeyFieldValues) {
+    public EntityNotFoundException(Class entity, String[] primaryKeyFieldNames, Object[] primaryKeyFieldValues) {
 
-        StringBuffer errorMessage = new StringBuffer("No entity "
-                + entity.getName() + " found with the following criteria: [");
+        StringBuffer errorMessage = new StringBuffer("No entity " + entity.getName()
+                + " found with the following criteria: [");
 
         int i;
         for (i = 0; i < primaryKeyFieldNames.length - 1; i++) {
