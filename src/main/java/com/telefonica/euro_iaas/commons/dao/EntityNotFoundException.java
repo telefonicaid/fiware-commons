@@ -10,7 +10,7 @@ public class EntityNotFoundException extends Exception {
 
     /**
      * Constructor of the class.
-     *
+     * 
      * @param entity
      *            The requested entity
      * @param primaryKeyFieldName
@@ -19,15 +19,13 @@ public class EntityNotFoundException extends Exception {
      *            The value of the primary key attribute
      */
     @SuppressWarnings("unchecked")
-    public EntityNotFoundException(Class entity, String primaryKeyFieldName,
-            Object primaryKeyFieldValue) {
-        this(entity, new String[] { primaryKeyFieldName },
-                new Object[] { primaryKeyFieldValue });
+    public EntityNotFoundException(Class entity, String primaryKeyFieldName, Object primaryKeyFieldValue) {
+        this(entity, new String[] { primaryKeyFieldName }, new Object[] { primaryKeyFieldValue });
     }
 
     /**
      * Constructor of the class.
-     *
+     * 
      * @param entity
      *            The requested entity
      * @param primaryKeyFieldNames
@@ -36,11 +34,10 @@ public class EntityNotFoundException extends Exception {
      *            The values of all the primary key fields
      */
     @SuppressWarnings("unchecked")
-    public EntityNotFoundException(Class entity, String[] primaryKeyFieldNames,
-            Object[] primaryKeyFieldValues) {
+    public EntityNotFoundException(Class entity, String[] primaryKeyFieldNames, Object[] primaryKeyFieldValues) {
 
-        StringBuffer errorMessage = new StringBuffer("No entity "
-                + entity.getName() + " found with the following criteria: [");
+        StringBuffer errorMessage = new StringBuffer("No entity " + entity.getName()
+                + " found with the following criteria: [");
 
         int i;
         for (i = 0; i < primaryKeyFieldNames.length - 1; i++) {

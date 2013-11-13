@@ -10,8 +10,9 @@ public class AlreadyExistsEntityException extends Exception {
 
     /**
      * Constructor of the class.
-     *
-     * @param entity The requested entity
+     * 
+     * @param entity
+     *            The requested entity
      */
     public AlreadyExistsEntityException(Object entity) {
         this.entity = entity;
@@ -19,9 +20,11 @@ public class AlreadyExistsEntityException extends Exception {
 
     /**
      * Constructor of the class.
-     *
-     * @param entity The requested entity
-     * @param cause Parent exception
+     * 
+     * @param entity
+     *            The requested entity
+     * @param cause
+     *            Parent exception
      */
     public AlreadyExistsEntityException(Object entity, Exception cause) {
         super(cause);
@@ -30,8 +33,7 @@ public class AlreadyExistsEntityException extends Exception {
 
     @Override
     public String getMessage() {
-        return "Trying to persist a duplicated " + entity.getClass().getName() +
-                " entity. Caused by: " + getCause();
+        return "Trying to persist a duplicated " + entity.getClass().getName() + " entity. Caused by: " + getCause();
     }
 
 }
