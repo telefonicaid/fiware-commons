@@ -55,6 +55,7 @@ public abstract class AbstractBaseDao<T, ID extends Serializable> implements Bas
     public T create(T entity) throws InvalidEntityException, AlreadyExistsEntityException {
         try {
             entityManager.persist(entity);
+            entityManager.flush();
             return entity;
         } catch (EntityExistsException e) {
             throw new AlreadyExistsEntityException(entity, e);
