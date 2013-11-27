@@ -19,10 +19,13 @@ import javax.persistence.PersistenceException;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Base DAO class.
  */
+@Transactional(propagation = Propagation.REQUIRED)
 public abstract class AbstractBaseDao<T, ID extends Serializable> implements BaseDAO<T, ID> {
 
     private static final String FROM_CLAUSE = "from ";
