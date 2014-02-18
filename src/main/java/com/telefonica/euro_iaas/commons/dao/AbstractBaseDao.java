@@ -15,7 +15,6 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.PersistenceException;
 
 import org.hibernate.Criteria;
@@ -33,7 +32,7 @@ public abstract class AbstractBaseDao<T, ID extends Serializable> implements Bas
 
     private static final String QUERY_LOAD_BY_UNIQUE_FIELD = "SELECT o FROM {0} o WHERE o.{1} = :{1}";
 
-    @PersistenceContext(type = PersistenceContextType.TRANSACTION)
+    @PersistenceContext
     private EntityManager entityManager;
 
     /**
@@ -56,7 +55,6 @@ public abstract class AbstractBaseDao<T, ID extends Serializable> implements Bas
     /**
      * {@inheritDoc}
      */
-    @Transactional(rollbackFor = { InvalidEntityException.class, AlreadyExistsEntityException.class })
     public T create(T entity) throws InvalidEntityException, AlreadyExistsEntityException {
         try {
             entityManager.persist(entity);

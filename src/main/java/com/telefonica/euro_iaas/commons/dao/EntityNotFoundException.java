@@ -43,7 +43,7 @@ public class EntityNotFoundException extends Exception {
     @SuppressWarnings("unchecked")
     public EntityNotFoundException(Class entity, String[] primaryKeyFieldNames, Object[] primaryKeyFieldValues) {
 
-        StringBuffer errorMessage = new StringBuffer("No entity " + entity.getSimpleName()
+        StringBuffer errorMessage = new StringBuffer("No entity " + entity.getName()
                 + " found with the following criteria: [");
 
         int i;
