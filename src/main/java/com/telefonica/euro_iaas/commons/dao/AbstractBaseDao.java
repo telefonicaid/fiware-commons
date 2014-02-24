@@ -55,7 +55,8 @@ public abstract class AbstractBaseDao<T, ID extends Serializable> implements Bas
     /**
      * {@inheritDoc}
      */
-    public T create(T entity) throws InvalidEntityException, AlreadyExistsEntityException {
+
+    public T create(T entity) throws AlreadyExistsEntityException {
         try {
             entityManager.persist(entity);
             entityManager.flush();
@@ -83,7 +84,7 @@ public abstract class AbstractBaseDao<T, ID extends Serializable> implements Bas
     /**
      * {@inheritDoc}
      */
-    public T update(T entity) throws InvalidEntityException {
+    public T update(T entity) {
         try {
             entityManager.merge(entity);
             entityManager.flush();
@@ -141,16 +142,6 @@ public abstract class AbstractBaseDao<T, ID extends Serializable> implements Bas
      */
     protected EntityManager getEntityManager() {
         return entityManager;
-    }
-
-    /**
-     * Set the EntityManager. Used in <em>setter injection</em>.
-     * 
-     * @param entityManager
-     *            the <code>entityManager</code> to inject.
-     */
-    protected void getEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
     }
 
     // /////// SOME PAGINATION METHODS
