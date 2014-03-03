@@ -47,7 +47,8 @@ public class InvalidEntityException extends Exception {
 
     @Override
     public String getMessage() {
-        return "Trying to persist an invalid " + entity.getClass().getName() + " entity. Caused by: " + getCause();
+        return "Trying to persist an invalid " + entity.getClass().getSimpleName() + " entity. Caused by: "
+                + getCause();
     }
 
 }

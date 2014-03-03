@@ -32,7 +32,7 @@ public interface BaseDAO<T, ID extends Serializable> {
      * @throws AlreadyExistsEntityException
      *             If an entity with the same id already exists in the repository
      */
-    T create(T entity) throws InvalidEntityException, AlreadyExistsEntityException;
+    T create(T entity) throws AlreadyExistsEntityException;
 
     /**
      * Updates the given entity.
@@ -42,7 +42,7 @@ public interface BaseDAO<T, ID extends Serializable> {
      *             If the entity is invalid (mandatory fields not set, duplicated unique fields, etc.) or if does not
      *             exists.
      */
-    T update(T entity) throws InvalidEntityException;
+    T update(T entity);
 
     /**
      * Removes an existent entity.
