@@ -7,55 +7,135 @@
     <name>Commons Dao</name>
     <description>
         Provides a common interface to implement new Dao objects. Even provides
-        a reference jpa bassed implementation using hibernate.
+        a reference jpa based implementation using hibernate.
     </description>
 
-    <version>1.1.1</version>
+    <version>1.2.1</version>
 
     <inceptionYear>2011</inceptionYear>
 
-    <developers>
-        <developer>
-            <id>sergio</id>
-            <name>Sergio Arroyo</name>
-            <email>sergio.arroyo@tic.alten.com
-            </email>
-            <roles>
-                <role>soft. architect</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
+    <url>${ciURI}/sites/fiware/${project.artifactId}</url>
+
+    <properties>
+
+        <repoName>fiware-commonsdao</repoName>
+        <scmURI>git@pdihub.hi.inet:fiware</scmURI>
+        <ciURI>http://ci-fiware-01.hi.inet</ciURI>
+        <issueURI>https://jirapdi.tid.es/browse</issueURI>
+        <nexusRepositories>${ciURI}/nexus/content/repositories</nexusRepositories>
+        <continousIntegrationSystemUrl>${ciURI}/jenkins</continousIntegrationSystemUrl>
+        <continousIntegrationSystemProjectName>${repoName}</continousIntegrationSystemProjectName>
+
+        <!-- repositories for distribution -->
+        <!-- snapshots -->
+        <repoMavenSnapshotId>repo-snapshot</repoMavenSnapshotId>
+        <repoMavenSnapshotName>repo-snapshot</repoMavenSnapshotName>
+        <repoMavenSnapshotUrl>${nexusRepositories}/snapshots</repoMavenSnapshotUrl>
+        <!-- releases -->
+        <repoMavenId>repo-release</repoMavenId>
+        <repoMavenName>repo-release</repoMavenName>
+        <repoMavenUrl>${nexusRepositories}/releases</repoMavenUrl>
+        <!-- thirdparty -->
+        <repoMavenThirdpartyId>repo-third-party-release</repoMavenThirdpartyId>
+        <repoMavenThirdpartyName>repo-third-party-release</repoMavenThirdpartyName>
+        <repoMavenThirdpartyUrl>${nexusRepositories}/thirdparty</repoMavenThirdpartyUrl>
+        <!-- site -->
+        <repoSiteId>nexus-site-repository</repoSiteId>
+        <repoSiteName>repo-site</repoSiteName>
+        <repoSiteUrl>${ciURI}</repoSiteUrl>
+
+        <!-- Release generation -->
+        <maven-jgitflow-plugin.version>1.0-alpha21.1</maven-jgitflow-plugin.version>
+        <maven-license-plugin.version>1.2.5</maven-license-plugin.version>
+
+    </properties>
+
+    <scm>
+        <connection>scm:git:${scmURI}/${repoName}.git</connection>
+        <developerConnection>scm:git:${scmURI}/${repoName}.git</developerConnection>
+        <url>${scmURI}/${repoName}.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <issueManagement>
         <system>Jira</system>
-        <url>https://jira.tid.es/browse/CLAUDIA</url>
+        <url>${issueURI}/CLAUDIA</url>
     </issueManagement>
 
     <dependencies>
         <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.4.0.GA</version>
+            <version>4.1.7.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>3.1.0.RELEASE</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
 
+            <!-- jgitflow -->
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-jgitflow-plugin</artifactId>
+                <version>${maven-jgitflow-plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <!-- to test a release set to true -->
+                    <noDeploy>true</noDeploy>
+                    <!-- rse: to avoid tag in master -->
+                    <noTag>false</noTag>
+                    <!-- rse: to avoid push changes to git -->
+                    <pushChanges>false</pushChanges>
+                    <!-- rse: To keep release branch -->
+                    <keepBranch>true</keepBranch>
+                    <!-- rse:  If set to true, the plugin sets the property "performRelease" to true,
+                    which activates the profile "release-profile", which is
+                    inherited from the super pom -->
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <allowSnapshots>true</allowSnapshots>
+                </configuration>
+            </plugin>
+
+
+            <!-- license plugin -->
+
+            <plugin>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>${maven-license-plugin.version}</version>
+                <configuration>
+                    <header>src/license/fiware/header.txt</header>
+                    <includes>
+                        <include>src/main/**/*.java</include>
+                        <include>src/test/**/*.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.1</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
 
@@ -108,27 +188,30 @@
     </reporting>
 
     <distributionManagement>
-        <!-- Repositorio para hacer el deploy de las releases -->
+
+        <!-- RPM Releases Repository -->
         <repository>
             <id>${repoMavenId}</id>
             <name>${repoMavenName}</name>
             <url>${repoMavenUrl}</url>
+            <uniqueVersion>false</uniqueVersion>
         </repository>
-        <!--Don't want deploy snapshots -->
-        <!--
-            <snapshotRepository> <id>${repoMavenSnapshotId}</id>
+
+        <!-- RPM Snapshots Repository -->
+        <snapshotRepository>
+            <id>${repoMavenSnapshotId}</id>
             <name>${repoMavenSnapshotName}</name>
-            <url>${repoMavenSnapshotUrl}</url> </snapshotRepository>
-        -->
-        <!-- Maquina donde se publica el site del proyecto -->
+            <url>${repoMavenSnapshotUrl}</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+
+        <!-- Project Site -->
         <site>
             <id>${repoSiteId}</id>
             <name>${repoSiteName}</name>
-            <url>${repoSiteUrl}/${project.groupId}/${project.artifactId}/${project.version}
-               </url>
+            <url>${repoSiteUrl}/fiware/${project.artifactId}</url>
         </site>
+
     </distributionManagement>
-    <scm>
-        <developerConnection>scm:svn:https://barricada.hi.inet/repositorio/boi/europ-iaas/util/commons-dao/tags/commons-dao-1.1.1</developerConnection>
-    </scm>
+
 </project>
