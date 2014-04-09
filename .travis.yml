@@ -1,0 +1,14 @@
+language: java
+jdk:
+- openjdk6
+before_install:
+- python travis.py --mirrors;
+install:
+- mvn install -DskipTests=true
+env:
+  global:
+  - SONATYPE_USERNAME=deployment
+  - secure: d297B8OAbSEmSKCFMlHg5F9Bc2+L/Cs33Z4ZPVmWcVFcVNlBzhJ/g2gODI3c90bqGg6olUIBv7CfT+xRjqCUXD5BTzj97SKHo+zgjT+WwvUFGp9tRNgb5GXgCVAFssL0jnFx/r7U/GqWbJuESzJvApkLecTGgQ5jxhlQfie36s0=
+after_success:
+- '[[ $TRAVIS_REPO_SLUG == telefonicaid* ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]] && { python travis.py --deploy; mvn deploy -DskipTests=true; };'
+- '[[ $TRAVIS_REPO_SLUG == telefonicaid* ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "develop" ]] && { python travis.py --deploy; mvn deploy -DskipTests=true; };'
