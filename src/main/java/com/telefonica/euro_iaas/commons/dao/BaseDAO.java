@@ -30,13 +30,12 @@ import java.util.List;
 /**
  * Base DAO interface, with common methods.
  * 
- * @author Sergio Arroyo
  * @param <T>
  *            Entity class of the entity
- * @param <ID>
+ * @param <I>
  *            Class of the business key of the entity
  */
-public interface BaseDAO<T, ID extends Serializable> {
+public interface BaseDAO<T, I extends Serializable> {
 
     /**
      * Creates a new entity.
@@ -44,8 +43,6 @@ public interface BaseDAO<T, ID extends Serializable> {
      * @param entity
      *            Entity to be persisted
      * @return The entity just created.
-     * @throws InvalidEntityException
-     *             If the entity is invalid (mandatory fields not present, duplicated unique fields, etc.)
      * @throws AlreadyExistsEntityException
      *             If an entity with the same id already exists in the repository
      */
@@ -55,9 +52,6 @@ public interface BaseDAO<T, ID extends Serializable> {
      * Updates the given entity.
      * 
      * @return The entity just updated.
-     * @throws InvalidEntityException
-     *             If the entity is invalid (mandatory fields not set, duplicated unique fields, etc.) or if does not
-     *             exists.
      */
     T update(T entity);
 
@@ -78,7 +72,7 @@ public interface BaseDAO<T, ID extends Serializable> {
      * @throws EntityNotFoundException
      *             If no entity is found with the given id
      */
-    T load(ID id) throws EntityNotFoundException;
+    T load(I id) throws EntityNotFoundException;
 
     /**
      * Find all entities of the given class.

@@ -65,14 +65,19 @@ public class EntityNotFoundException extends Exception {
 
         int i;
         for (i = 0; i < primaryKeyFieldNames.length - 1; i++) {
-            errorMessage.append(primaryKeyFieldNames[i] + " = ");
-            errorMessage.append(primaryKeyFieldValues[i] + ", ");
+            errorMessage.append(primaryKeyFieldNames[i]);
+            errorMessage.append(" = ");
+            errorMessage.append(primaryKeyFieldValues[i]);
+            errorMessage.append(", ");
         }
-        errorMessage.append(primaryKeyFieldNames[i] + " = ");
-        errorMessage.append(primaryKeyFieldValues[i]).append("].");
+        errorMessage.append(primaryKeyFieldNames[i]);
+        errorMessage.append(" = ");
+        errorMessage.append(primaryKeyFieldValues[i]);
+        errorMessage.append("].");
 
         if (getCause() != null) {
-            errorMessage.append(" Caused by: " + getCause().getMessage());
+            errorMessage.append(" Caused by: ");
+            errorMessage.append(getCause().getMessage());
         }
 
         this.errorMsg = errorMessage.toString();
