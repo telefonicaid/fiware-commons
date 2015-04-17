@@ -22,12 +22,10 @@
  * </p>
  */
 
-package com.telefonica.euro_iaas.commons.dao;
+package com.telefonica.fiware.commons.dao;
 
 /**
  * Provides a set of common fields in search criteria.
- * 
- * @author Sergio Arroyo
  */
 public class AbstractSearchCriteria {
     public final static String ASC = "asc";

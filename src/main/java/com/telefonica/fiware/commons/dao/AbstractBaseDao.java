@@ -22,7 +22,7 @@
  * </p>
  */
 
-package com.telefonica.euro_iaas.commons.dao;
+package com.telefonica.fiware.commons.dao;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
@@ -41,9 +41,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Base DAO class.
+ * 
+ * @param <T>
+ *            Entity class of the entity
+ * @param <I>
+ *            Class of the business key of the entity
  */
 @Transactional(propagation = Propagation.REQUIRED)
-public abstract class AbstractBaseDao<T, ID extends Serializable> implements BaseDAO<T, ID> {
+public abstract class AbstractBaseDao<T, I extends Serializable> implements BaseDAO<T, I> {
 
     private static final String FROM_CLAUSE = "from ";
 
