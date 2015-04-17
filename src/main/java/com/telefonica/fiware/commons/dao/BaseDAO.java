@@ -22,7 +22,7 @@
  * </p>
  */
 
-package com.telefonica.euro_iaas.commons.dao;
+package com.telefonica.fiware.commons.dao;
 
 import java.io.Serializable;
 import java.util.List;
