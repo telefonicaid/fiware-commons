@@ -75,8 +75,7 @@ Installation
 
 .. |Build Status| image::  https://travis-ci.org/telefonicaid/fiware-commons.svg
    :target: https://travis-ci.org/telefonicaid/fiware-commons
-.. |Coverage Status| image:: https://coveralls.io/repos/telefonicaid/fiware-commons/badge.png?branch=develop
+.. |Coverage Status| image:: https://coveralls.io/repos/telefonicaid/fiware-commons/badge.svg?branch=develop
    :target: https://coveralls.io/r/telefonicaid/fiware-commons
-
 
 
