@@ -1,4 +1,4 @@
-package com.telefonica.fiware.commons.openstack.auth; /**
+/**
  * Copyright 2014 Telefonica Investigación y Desarrollo, S.A.U <br>
  * This file is part of FI-WARE project.
  * <p>
@@ -22,18 +22,20 @@ package com.telefonica.fiware.commons.openstack.auth; /**
  * </p>
  */
 
-import javax.ws.rs.core.Response;
-
-import net.sf.json.JSONObject;
-import org.junit.Test;
-import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.BadCredentialsException;
-
+package com.telefonica.fiware.commons.openstack.auth;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import javax.ws.rs.core.Response;
+
+import net.sf.json.JSONObject;
+
+import org.junit.Test;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 
 public class OpenStackKeystoneV3Test {
 

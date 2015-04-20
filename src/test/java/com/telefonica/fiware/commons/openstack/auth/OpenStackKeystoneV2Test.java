@@ -1,5 +1,3 @@
-package com.telefonica.fiware.commons.openstack.auth;
-
 /**
  * Copyright 2014 Telefonica Investigación y Desarrollo, S.A.U <br>
  * This file is part of FI-WARE project.
@@ -23,6 +21,8 @@ package com.telefonica.fiware.commons.openstack.auth;
  * For those usages not covered by the Apache version 2.0 License please contact with opensource@tid.es
  * </p>
  */
+
+package com.telefonica.fiware.commons.openstack.auth;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

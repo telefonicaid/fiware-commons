@@ -158,17 +158,6 @@ public abstract class AbstractBaseDao<T, I extends Serializable> implements Base
     }
 
     /**
-     * To obtain the EntityManager that this class wraps.
-     * 
-     * @return The <code>EntityManager</code>
-     */
-    protected EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-    // /////// SOME PAGINATION METHODS
-
-    /**
      * set pagination.
      * 
      * @param searchCriteria
@@ -321,6 +310,24 @@ public abstract class AbstractBaseDao<T, I extends Serializable> implements Base
             order = Order.desc(orderBy);
         }
         return order;
+    }
+
+    /**
+     * To obtain the EntityManager that this class wraps.
+     * 
+     * @return The <code>EntityManager</code>
+     */
+    protected EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    /**
+     * Set an entityManager.
+     * 
+     * @param entityManager
+     */
+    protected void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
 }
