@@ -28,15 +28,31 @@ package com.telefonica.fiware.commons.openstack.auth.exception;
  */
 public class OpenStackException extends Exception {
 
-    public OpenStackException(String msg) {
-        super(msg);
+    /**
+     * Construct an exception with a message.
+     * 
+     * @param message
+     */
+    public OpenStackException(String message) {
+        super(message);
     }
 
-    public OpenStackException(Throwable e) {
-        super(e);
+    /**
+     * Construct an exception with a message.
+     * 
+     * @param exception
+     */
+    public OpenStackException(Throwable exception) {
+        super(exception);
     }
 
-    public OpenStackException(String msg, Throwable e) {
-        super(msg, e);
+    /**
+     * Construct an exception with a message and exception.
+     * 
+     * @param message
+     * @param exception
+     */
+    public OpenStackException(String message, Throwable exception) {
+        super(message, exception);
     }
 }

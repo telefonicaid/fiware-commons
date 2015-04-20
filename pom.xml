@@ -57,9 +57,10 @@
         <jersey2.version>2.14</jersey2.version>
         <jaxrs.api.impl.version>2.0.1</jaxrs.api.impl.version>
         <!-- spring -->
-
         <spring.version>3.1.0.RELEASE</spring.version>
 
+        <!-- ehcache -->
+        <ehcache.version>2.7.4</ehcache.version>
 
         <!-- test -->
         <junit.version>4.11</junit.version>
@@ -138,6 +139,18 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>
@@ -157,6 +170,26 @@
             <artifactId>jersey-client</artifactId>
             <version>${jersey2.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.connectors</groupId>
+            <artifactId>jersey-apache-connector</artifactId>
+            <version>${jersey2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>${jersey2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -322,4 +355,55 @@
 
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>${repoMavenSnapshotId}</id>
+            <name>${repoMavenSnapshotName}</name>
+            <url>${repoMavenSnapshotUrl}</url>
+        </repository>
+        <repository>
+            <id>${repoMavenId}</id>
+            <name>${repoMavenName}</name>
+            <url>${repoMavenUrl}</url>
+        </repository>
+        <repository>
+            <id>${repoMavenThirdpartyId}</id>
+            <name>${repoMavenThirdpartyName}</name>
+            <url>${repoMavenThirdpartyUrl}</url>
+        </repository>
+
+
+        <!-- Remote Repositories -->
+        <repository>
+            <id>central</id>
+            <name>central-repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>central2</id>
+            <name>central2-repository</name>
+            <url>http://repo2.maven.org/maven2</url>
+        </repository>
+
+        <!-- SpringSource repositories -->
+        <repository>
+            <id>com.springsource.repository.libraries.release</id>
+            <name>SpringSource Enterprise Bundle Repository - SpringSource Library Releases</name>
+            <url>http://repository.springsource.com/maven/libraries/release</url>
+        </repository>
+        <repository>
+            <id>com.springsource.repository.libraries.external</id>
+            <name>SpringSource Enterprise Bundle Repository - External Library Releases</name>
+            <url>http://repository.springsource.com/maven/libraries/external</url>
+        </repository>
+
+        <!-- Restlet repository-->
+
+        <repository>
+            <id>maven-restlet</id>
+            <name>Public online Restlet repository</name>
+            <url>http://maven.restlet.org</url>
+        </repository>
+
+    </repositories>
 </project>
