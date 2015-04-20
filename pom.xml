@@ -157,11 +157,6 @@
             <artifactId>jersey-client</artifactId>
             <version>${jersey2.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey</groupId>
-            <artifactId>project</artifactId>
-            <version>${jersey2.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
