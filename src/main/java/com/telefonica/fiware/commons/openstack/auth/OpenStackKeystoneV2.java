@@ -56,7 +56,7 @@ public class OpenStackKeystoneV2 implements OpenStackKeystone {
     private static Logger log = LoggerFactory.getLogger(OpenStackAuthenticationToken.class);
 
     /**
-     * parse response for /auth/tokens (identity API v2)
+     * Parse response for /auth/tokens (identity API v2).
      * 
      * @param openStackAccess
      * @param response
@@ -118,6 +118,8 @@ public class OpenStackKeystoneV2 implements OpenStackKeystone {
     }
 
     /**
+     * Parse endpoints url after request to keystone.
+     * 
      * @param jsonObject
      * @param type
      * @param regionName
@@ -167,6 +169,8 @@ public class OpenStackKeystoneV2 implements OpenStackKeystone {
     }
 
     /**
+     * Obtains a list with all region names for a service.
+     * 
      * @param jsonObject
      * @param serviceName
      * @return
@@ -207,6 +211,14 @@ public class OpenStackKeystoneV2 implements OpenStackKeystone {
         return names;
     }
 
+    /**
+     * Check if token is valid for a tenant.
+     * 
+     * @param token
+     * @param tenantId
+     * @param response
+     * @return
+     */
     @Override
     public String[] checkToken(String token, String tenantId, Response response) {
         if (response.getStatus() == CODE_200) {

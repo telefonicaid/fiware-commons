@@ -24,7 +24,7 @@
 package com.telefonica.fiware.commons.openstack.auth.exception;
 
 /**
- * 
+ * Exception used to return fails in keystone response parsers.
  */
 public class OpenStackException extends Exception {
 

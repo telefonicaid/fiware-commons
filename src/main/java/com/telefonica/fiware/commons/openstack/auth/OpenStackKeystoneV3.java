@@ -31,7 +31,6 @@ import java.util.Map;
 
 import javax.ws.rs.core.Response;
 
-import com.telefonica.fiware.commons.openstack.auth.exception.OpenStackException;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -39,6 +38,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
+
+import com.telefonica.fiware.commons.openstack.auth.exception.OpenStackException;
 
 /**
  * OpenStackKeystoneV3
@@ -173,7 +174,7 @@ public class OpenStackKeystoneV3 implements OpenStackKeystone {
     }
 
     /**
-     * Parse region names
+     * Obtains a list with all region names for a service.
      * 
      * @param jsonObject
      * @param name
@@ -219,6 +220,7 @@ public class OpenStackKeystoneV3 implements OpenStackKeystone {
     }
 
     /**
+     * Check if token is valid for a tenant.
      * @param token
      * @param tenantId
      * @param response

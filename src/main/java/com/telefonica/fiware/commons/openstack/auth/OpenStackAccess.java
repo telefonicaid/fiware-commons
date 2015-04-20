@@ -25,6 +25,9 @@ package com.telefonica.fiware.commons.openstack.auth;
 
 import net.sf.json.JSONObject;
 
+/**
+ * Class to encapsulates information about token.
+ */
 public class OpenStackAccess {
 
     private String token;
@@ -39,50 +42,110 @@ public class OpenStackAccess {
 
     private OpenStackKeystone openStackKeystone;
 
+    /**
+     * Get the token.
+     * 
+     * @return
+     */
     public String getToken() {
         return token;
     }
 
+    /**
+     * Set the token.
+     * 
+     * @param token
+     */
     public void setToken(String token) {
         this.token = token;
     }
 
+    /**
+     * Get tenant id.
+     * 
+     * @return
+     */
     public String getTenantId() {
         return tenantId;
     }
 
+    /**
+     * Set tenant Id.
+     * 
+     * @param tenantId
+     */
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
     }
 
+    /**
+     * Get tenant name.
+     * 
+     * @return
+     */
     public String getTenantName() {
         return tenantName;
     }
 
+    /**
+     * Set tenant name.
+     * 
+     * @param tenantName
+     */
     public void setTenantName(String tenantName) {
         this.tenantName = tenantName;
     }
 
+    /**
+     * Get Json with keystone response.
+     * 
+     * @return
+     */
     public JSONObject getAccessJSON() {
         return accessJSON;
     }
 
+    /**
+     * Set json with keystone response.
+     * 
+     * @param accessJSON
+     */
     public void setAccessJSON(JSONObject accessJSON) {
         this.accessJSON = accessJSON;
     }
 
+    /**
+     * get API version.
+     * 
+     * @return
+     */
     public String getApi() {
         return api;
     }
 
+    /**
+     * Set API version.
+     * 
+     * @param api
+     */
     public void setApi(String api) {
         this.api = api;
     }
 
+    /**
+     * get keystone class to process/parse keystone request/response.
+     * 
+     * @return
+     */
     public OpenStackKeystone getOpenStackKeystone() {
         return openStackKeystone;
     }
 
+    /**
+     * set keystone class to process/parse keystone request/response.
+     * 
+     * @param openStackKeystone
+     */
     public void setOpenStackKeystone(OpenStackKeystone openStackKeystone) {
         this.openStackKeystone = openStackKeystone;
     }

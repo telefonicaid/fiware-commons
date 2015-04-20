@@ -63,6 +63,8 @@ public interface OpenStackKeystone {
     String getPayload(String user, String password, String tenant);
 
     /**
+     * Parse response after request token to keystone.
+     * 
      * @param openStackAccess
      * @param response
      * @param jsonObjectResponse
@@ -70,6 +72,8 @@ public interface OpenStackKeystone {
     void parseResponse(OpenStackAccess openStackAccess, Response response, JSONObject jsonObjectResponse);
 
     /**
+     * Parse endpoints url after request to keystone.
+     * 
      * @param jsonObject
      * @param type
      * @param regionName
@@ -79,6 +83,8 @@ public interface OpenStackKeystone {
     String parseEndpoint(JSONObject jsonObject, String type, String regionName) throws OpenStackException;
 
     /**
+     * Obtains a list with all region names for a service.
+     * 
      * @param jsonObject
      * @param serviceName
      * @return
@@ -86,6 +92,8 @@ public interface OpenStackKeystone {
     List<String> parseRegionNames(JSONObject jsonObject, String serviceName);
 
     /**
+     * Check if token is valid for a tenant.
+     * 
      * @param token
      * @param tenantId
      * @param response
