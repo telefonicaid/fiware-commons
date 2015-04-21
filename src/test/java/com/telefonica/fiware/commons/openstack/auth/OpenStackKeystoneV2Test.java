@@ -51,6 +51,9 @@ public class OpenStackKeystoneV2Test {
 
     private JSONObject serviceCatalogJSON;
 
+    /**
+     * Configure test
+     */
     @Before
     public void setUp() {
 
@@ -61,15 +64,18 @@ public class OpenStackKeystoneV2Test {
                 obj = parser
                         .parse(new FileReader(this.getClass().getResource("/service_catalog_apiV2.json").getPath()));
             } catch (IOException e) {
-                e.printStackTrace();  // To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             } catch (ParseException e) {
-                e.printStackTrace();  // To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
 
             serviceCatalogJSON = JSONObject.fromObject(obj.toString());
         }
     }
 
+    /**
+     * Should get valid payload for authentication.
+     */
     @Test
     public void shouldGetValidPayload() {
         // given
@@ -86,6 +92,9 @@ public class OpenStackKeystoneV2Test {
 
     }
 
+    /**
+     * Should return version.
+     */
     @Test
     public void shouldGetVersion2() {
         // given
@@ -99,6 +108,9 @@ public class OpenStackKeystoneV2Test {
         assertEquals("v2.0", version);
     }
 
+    /**
+     * Should return the url to request tokens.
+     */
     @Test
     public void shouldGetKeystoneUrlV3() {
         // given
@@ -112,6 +124,9 @@ public class OpenStackKeystoneV2Test {
 
     }
 
+    /**
+     * Should return the url configured ending with slash
+     */
     @Test
     public void shouldGetKeystoneUrlV2WithSlashCharacter() {
         // given
@@ -125,6 +140,9 @@ public class OpenStackKeystoneV2Test {
 
     }
 
+    /**
+     * Should parse valid response for token request.
+     */
     @Test
     public void shouldParseResponse() {
         // given
@@ -152,6 +170,9 @@ public class OpenStackKeystoneV2Test {
         assertNotNull(openStackAccess.getAccessJSON());
     }
 
+    /**
+     * Should check token.
+     */
     @Test
     public void shouldCheckTokenWithValidToken() {
         // given
@@ -176,6 +197,9 @@ public class OpenStackKeystoneV2Test {
         assertEquals("tenantName1", result[1]);
     }
 
+    /**
+     * Should fail and throw exception with invalid token.
+     */
     @Test(expected = BadCredentialsException.class)
     public void shouldFailInCheckTokenWithInvalidToken() {
         // given
@@ -189,6 +213,9 @@ public class OpenStackKeystoneV2Test {
         // then
     }
 
+    /**
+     * Should fail and throw exception with invalid tenant id.
+     */
     @Test(expected = AuthenticationServiceException.class)
     public void shouldFailInCheckTokenWithValidTenantId() {
         // given
@@ -210,6 +237,9 @@ public class OpenStackKeystoneV2Test {
         // then
     }
 
+    /**
+     * Should fail and throw exception with generic 500 http error response code.
+     */
     @Test(expected = AuthenticationServiceException.class)
     public void shouldFailInCheckTokenWithOpenStackError() {
         // given
@@ -223,6 +253,9 @@ public class OpenStackKeystoneV2Test {
         // then
     }
 
+    /**
+     * Should parse response and return a list of regions for nova
+     */
     @Test
     public void shouldParseRegionByNova() {
         // given
@@ -238,6 +271,9 @@ public class OpenStackKeystoneV2Test {
         assertTrue(names.contains("Trento"));
     }
 
+    /**
+     * Should parse response and return a empty list of regions for a invalid service.
+     */
     @Test
     public void shouldParseRegionByInvalidService() {
         // given
@@ -251,6 +287,10 @@ public class OpenStackKeystoneV2Test {
         assertEquals(0, names.size());
     }
 
+    /**
+     * Should return an url after parse response json for service compute and region Spain.
+     * @throws OpenStackException
+     */
     @Test
     public void shouldParseEndPointByComputeAndSpainRegion() throws OpenStackException {
         // given
@@ -264,6 +304,10 @@ public class OpenStackKeystoneV2Test {
         assertEquals("http://dev-havana-controller:8774/v2/00000000000004769113056827337000", url);
     }
 
+    /**
+     * Should return an url in parseEndPoint although region is invalid.
+     * @throws OpenStackException
+     */
     @Test
     public void shouldParseEndPointByComputeAndInvalidRegionAndReturnDefault() throws OpenStackException {
         // given
