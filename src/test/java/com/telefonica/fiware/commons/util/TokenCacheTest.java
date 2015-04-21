@@ -26,6 +26,7 @@ package com.telefonica.fiware.commons.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import net.sf.ehcache.Element;
 
 import org.junit.Test;
 
@@ -84,5 +85,20 @@ public class TokenCacheTest {
 
         // then
         assertNull(openStackAccess);
+    }
+
+    /**
+     * Should initialize TokenCache without configuration file.
+     */
+    @Test
+    public void shouldInitializeTokenCacheWithoutConfigFile() {
+        // given
+        // when
+        TokenCache tokenCache = new TokenCache("invalid");
+        tokenCache.put("key", "value");
+
+        // then
+        Element element = tokenCache.getCache().get("key");
+        assertEquals("value", element.getObjectValue());
     }
 }

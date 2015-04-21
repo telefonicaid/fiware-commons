@@ -24,12 +24,17 @@
 
 package com.telefonica.fiware.commons.util;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import net.sf.ehcache.config.CacheConfiguration;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.telefonica.fiware.commons.openstack.auth.OpenStackAccess;
 
@@ -55,25 +60,55 @@ public class TokenCache {
     private Cache cache;
 
     /**
+     * The log.
+     */
+    private static Logger log = LoggerFactory.getLogger(TokenCache.class);
+
+    /**
      * Default constructor. Creates the cache.
      */
+
     public TokenCache() {
+        this("/ehcache.xml");
+    }
+
+    /**
+     * Creates the cache configured in fileName.
+     * 
+     * @param fileName
+     */
+    public TokenCache(String fileName) {
 
         CacheManager singletonManager;
+        InputStream inputStream = this.getClass().getResourceAsStream(fileName);
         try {
-            InputStream inputStream = this.getClass().getResourceAsStream("/ehcache.xml");
             singletonManager = CacheManager.newInstance(inputStream);
-        } catch (Exception e) {
-            singletonManager = CacheManager.create();
-            singletonManager.addCache(CACHE_NAME);
-            cache.getCacheConfiguration();
             cache = singletonManager.getCache(CACHE_NAME);
-            CacheConfiguration cacheConfiguration = cache.getCacheConfiguration();
-            cacheConfiguration.setTimeToIdleSeconds(TIME_TO_IDLE);
-            cacheConfiguration.setTimeToLiveSeconds(TIME_TO_LIVE);
+            if (cache == null) {
+                throw new Exception("Cache " + CACHE_NAME + " does not exist in ehcache file. Caches list:"
+                        + Arrays.toString(singletonManager.getCacheNames()));
+            }
+        } catch (Exception e) {
+            log.error("Error reading ehCache file " + e);
+            singletonManager = CacheManager.create();
+            if (!singletonManager.cacheExists(CACHE_NAME)) {
+                singletonManager.addCache(CACHE_NAME);
+            }
+            cache = singletonManager.getCache(CACHE_NAME);
 
+            CacheConfiguration cacheConfiguration = cache.getCacheConfiguration();
+            cacheConfiguration.setTimeToIdleSeconds(1200);
+            cacheConfiguration.setTimeToLiveSeconds(1200);
+
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    log.error("Error closing ehCache file " + e);
+                }
+            }
         }
-        cache = singletonManager.getCache(CACHE_NAME);
 
     }
 

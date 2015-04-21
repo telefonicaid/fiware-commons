@@ -24,18 +24,23 @@
 
 package com.telefonica.fiware.commons.dao;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
@@ -324,5 +329,77 @@ public class AbstractBaseDaoTest {
         verify(entityManager).contains(entity);
         verify(entityManager).remove(entity);
         verify(entityManager).flush();
+    }
+
+    /**
+     * Should throw exception in creates a entity when exception in persist entity.
+     * 
+     * @throws Exception
+     */
+    @Test(expected = DaoRuntimeException.class)
+    public void shouldThrowDaoRuntimeExceptionInCreatesWhenErrorInPersist() throws Exception {
+
+        // given
+        AbstractBaseDao abstractBaseDao = mock(AbstractBaseDao.class, Mockito.CALLS_REAL_METHODS);
+        EntityManager entityManager = mock(EntityManager.class);
+        abstractBaseDao.setEntityManager(entityManager);
+
+        Object entity = mock(Object.class);
+        doThrow(new PersistenceException()).when(entityManager).persist(entity);
+        // when
+        abstractBaseDao.create(entity);
+    }
+
+    /**
+     * Should throw exception in creates a entity when exception in persist entity. The exception should return a well
+     * formatted message.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void shouldReturnMessageTheExceptionInCreatesWhenErrorInPersist() throws Exception {
+
+        // given
+        AbstractBaseDao abstractBaseDao = mock(AbstractBaseDao.class, Mockito.CALLS_REAL_METHODS);
+        EntityManager entityManager = mock(EntityManager.class);
+        abstractBaseDao.setEntityManager(entityManager);
+
+        Object entity = mock(Object.class);
+        doThrow(new EntityExistsException()).when(entityManager).persist(entity);
+        // when
+        try {
+            abstractBaseDao.create(entity);
+        } catch (Exception ex) {
+            String message = ex.getMessage();
+            assertNotNull(message);
+        }
+
+        // then
+        verify(entityManager).persist(entity);
+    }
+
+    /**
+     * Should find all elements
+     */
+    @Test
+    public void shouldFindAll() throws ClassNotFoundException {
+        // given
+        AbstractBaseDao abstractBaseDao = mock(AbstractBaseDao.class, Mockito.CALLS_REAL_METHODS);
+        EntityManager entityManager = mock(EntityManager.class);
+        abstractBaseDao.setEntityManager(entityManager);
+
+        List<String> list = new ArrayList();
+        list.add("value1");
+        Query query = mock(Query.class);
+        when(entityManager.createQuery(anyString())).thenReturn(query);
+        when(query.getResultList()).thenReturn(list);
+
+        // when
+        List<String> resultList = abstractBaseDao.findAll("test".getClass());
+
+        // then
+        assertNotNull(resultList);
+        assertEquals(1, resultList.size());
+        assertEquals("value1", resultList.get(0));
     }
 }
