@@ -28,8 +28,8 @@ package com.telefonica.fiware.commons.dao;
  * Provides a set of common fields in search criteria.
  */
 public class AbstractSearchCriteria {
-    public final static String ASC = "asc";
-    public final static String DESC = "desc";
+    public static final String ASC = "asc";
+    public static final String DESC = "desc";
 
     /** The number of page zero-based. */
     private Integer page;
