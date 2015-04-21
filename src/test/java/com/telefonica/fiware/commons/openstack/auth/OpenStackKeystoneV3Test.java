@@ -37,8 +37,14 @@ import org.junit.Test;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 
+/**
+ * Tests for OpenStackKeystone v3 api.
+ */
 public class OpenStackKeystoneV3Test {
 
+    /**
+     * Should get valid payload.
+     */
     @Test
     public void shouldGetValidPayload() {
         // given
@@ -56,6 +62,9 @@ public class OpenStackKeystoneV3Test {
 
     }
 
+    /**
+     * Should get version string.
+     */
     @Test
     public void shouldGetVersion3() {
         // given
@@ -69,6 +78,9 @@ public class OpenStackKeystoneV3Test {
         assertEquals("v3", version);
     }
 
+    /**
+     * Should get keystone url.
+     */
     @Test
     public void shouldGetKeystoneUrlV3() {
         // given
@@ -82,6 +94,9 @@ public class OpenStackKeystoneV3Test {
 
     }
 
+    /**
+     * Should get keystone url when it was configured with slash character.
+     */
     @Test
     public void shouldGetKeystoneUrlV3WithSlashCharacter() {
         // given
@@ -95,6 +110,9 @@ public class OpenStackKeystoneV3Test {
 
     }
 
+    /**
+     * Should parse response after request token.
+     */
     @Test
     public void shouldParseResponse() {
         // given
@@ -122,6 +140,9 @@ public class OpenStackKeystoneV3Test {
         assertNotNull(openStackAccess.getAccessJSON());
     }
 
+    /**
+     * Should check token with valid token.
+     */
     @Test
     public void shouldCheckTokenWithValidToken() {
         // given
@@ -148,8 +169,11 @@ public class OpenStackKeystoneV3Test {
 
     }
 
+    /**
+     * Should throw exception in check token with invalid token.
+     */
     @Test(expected = BadCredentialsException.class)
-    public void shouldCheckTokenWithInValidToken() {
+    public void shouldCheckTokenWithInvalidToken() {
         // given
 
         OpenStackKeystone openStackKeystone = new OpenStackKeystoneV3();
@@ -163,6 +187,9 @@ public class OpenStackKeystoneV3Test {
 
     }
 
+    /**
+     * Should throw authenticationServiceException in checkToken with invalid tenantId.
+     */
     @Test(expected = AuthenticationServiceException.class)
     public void shouldCheckTokenWithInvalidTenantId() {
         // given

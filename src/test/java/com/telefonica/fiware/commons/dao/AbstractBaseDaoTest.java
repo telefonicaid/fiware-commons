@@ -43,7 +43,16 @@ import org.hibernate.criterion.Order;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+/**
+ * Unit tests for abstract class AbstractBaseDAO.
+ */
 public class AbstractBaseDaoTest {
+
+    /**
+     * Should creates a entity.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldCreates() throws Exception {
 
@@ -61,6 +70,11 @@ public class AbstractBaseDaoTest {
         verify(entityManager).flush();
     }
 
+    /**
+     * Should Throw an AlreadyExistsEntityException in create method when an entity already exists in database.
+     * 
+     * @throws Exception
+     */
     @Test(expected = AlreadyExistsEntityException.class)
     public void shouldThrowExceptionWhenCreateWithAlreadyExistEntity() throws Exception {
 
@@ -78,6 +92,9 @@ public class AbstractBaseDaoTest {
         // then
     }
 
+    /**
+     * Should set optional pagination.
+     */
     @Test
     public void shouldSetOptionalPagination() {
         // given
@@ -96,6 +113,9 @@ public class AbstractBaseDaoTest {
         verify(baseCriteria).addOrder(any(Order.class));
     }
 
+    /**
+     * Should set optional pagination with inverse order.
+     */
     @Test
     public void shouldSetOptionalPaginationWithInverseOrder() {
         // given
@@ -117,6 +137,9 @@ public class AbstractBaseDaoTest {
         verify(baseCriteria).addOrder(any(Order.class));
     }
 
+    /**
+     * Should set pagination configuring page and page size.
+     */
     @Test
     public void shouldSetPagination() {
         // given
@@ -139,6 +162,9 @@ public class AbstractBaseDaoTest {
         verify(baseCriteria).setFirstResult(2);
     }
 
+    /**
+     * Should set pagination with inverse order and using default constructor.
+     */
     @Test
     public void shouldSetPaginationWithInverseOrder() {
         // given
@@ -162,6 +188,9 @@ public class AbstractBaseDaoTest {
         verify(baseCriteria).setFirstResult(2);
     }
 
+    /**
+     * Should throw IllegalArgumentException in method setPagination with invalid page argument.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void shouldSetPaginationWithInvalidPage() {
         // given
@@ -177,6 +206,11 @@ public class AbstractBaseDaoTest {
 
     }
 
+    /**
+     * Should load entity by field.
+     * 
+     * @throws EntityNotFoundException
+     */
     @Test
     public void shouldLoadByField() throws EntityNotFoundException {
         // given
@@ -202,6 +236,11 @@ public class AbstractBaseDaoTest {
         verify(query).setParameter("name1", "value");
     }
 
+    /**
+     * Should throw an EntityNotFoundException when call to loadByField with and element that isn't in database.
+     * 
+     * @throws EntityNotFoundException
+     */
     @Test(expected = EntityNotFoundException.class)
     public void shouldThrowNoResultExceptionInLoadByFieldWithNameNotFound() throws EntityNotFoundException {
         // given
@@ -225,6 +264,9 @@ public class AbstractBaseDaoTest {
 
     }
 
+    /**
+     * Should update an entity.
+     */
     @Test
     public void shouldUpdate() {
         // given
@@ -241,6 +283,9 @@ public class AbstractBaseDaoTest {
         verify(entityManager).flush();
     }
 
+    /**
+     * Should remove an entity.
+     */
     @Test
     public void shouldRemove() {
         // given
@@ -259,6 +304,9 @@ public class AbstractBaseDaoTest {
         verify(entityManager).flush();
     }
 
+    /**
+     * Should remove an entity although don't exist session.
+     */
     @Test
     public void shouldRemoveWithoutSession() {
         // given

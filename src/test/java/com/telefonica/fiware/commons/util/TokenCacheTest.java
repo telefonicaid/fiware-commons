@@ -31,8 +31,14 @@ import org.junit.Test;
 
 import com.telefonica.fiware.commons.openstack.auth.OpenStackAccess;
 
+/**
+ * Tests for TokenCache.
+ */
 public class TokenCacheTest {
 
+    /**
+     * Should put new user in cache.
+     */
     @Test
     public void shouldPutNewUserInCache() {
         // given
@@ -47,6 +53,9 @@ public class TokenCacheTest {
         assertEquals("user1", tokenCache.getPaasManagerUser("token1", "tenantId"));
     }
 
+    /**
+     * Should put new admin token in cache.
+     */
     @Test
     public void shouldPutNewTokenForAdminInCache() {
         // given
@@ -61,6 +70,9 @@ public class TokenCacheTest {
         assertEquals("token1", tokenCache.getAdmin().getToken());
     }
 
+    /**
+     * Should return null after cache had been clean.
+     */
     @Test
     public void shouldReturnNullWithEmptyCache() {
         // given

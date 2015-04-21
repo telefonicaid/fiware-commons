@@ -43,12 +43,21 @@ import org.junit.Test;
 
 import com.telefonica.fiware.commons.openstack.auth.exception.AuthenticationConnectionException;
 
+/**
+ * Tests for OpenStackAuthenticationToken
+ */
 public class OpenStackAuthenticationTokenTest {
 
     private final String keystoneUrl = "http://keystone/v3/";
 
+    /**
+     * Should get credentials for admin user.
+     * 
+     * @throws AuthenticationConnectionException
+     * @throws IOException
+     */
     @Test
-    public void getCredentialsTest() throws AuthenticationConnectionException, IOException {
+    public void shouldGetCredentialsTest() throws AuthenticationConnectionException, IOException {
 
         OpenStackAuthenticationToken openStackAuthenticationToken;
 
@@ -102,6 +111,11 @@ public class OpenStackAuthenticationTokenTest {
 
     }
 
+    /**
+     * Should throw exception in getCredentials when occurs an error in response.
+     * 
+     * @throws IOException
+     */
     @Test(expected = AuthenticationConnectionException.class)
     public void shouldGetCredentialsWithErrorAfterRequestToken() throws IOException {
         OpenStackAuthenticationToken openStackAuthenticationToken;
@@ -128,6 +142,12 @@ public class OpenStackAuthenticationTokenTest {
 
     }
 
+    /**
+     * Should get credentials with valid response code 201.
+     * 
+     * @throws AuthenticationConnectionException
+     * @throws IOException
+     */
     @Test
     public void getCredentialsWithReturningCode201() throws AuthenticationConnectionException, IOException {
 

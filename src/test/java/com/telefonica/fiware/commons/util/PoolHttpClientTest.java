@@ -33,8 +33,14 @@ import javax.ws.rs.client.Client;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.junit.Test;
 
+/**
+ * Class for testing PoolHttpClient
+ */
 public class PoolHttpClientTest {
 
+    /**
+     * Should create new client with poolHttpClient.
+     */
     @Test
     public void shouldCreatesClient() {
         // given
@@ -47,6 +53,9 @@ public class PoolHttpClientTest {
         assertNotNull(client);
     }
 
+    /**
+     * Should set client.
+     */
     @Test
     public void shouldAssignClient() {
         // given

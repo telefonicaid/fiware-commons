@@ -30,8 +30,14 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
+/**
+ * Tests for RegionCache.
+ */
 public class RegionCacheTest {
 
+    /**
+     * Should put a new url in cache.
+     */
     @Test
     public void shouldPutAnUrlInCache() {
         // given
@@ -46,6 +52,9 @@ public class RegionCacheTest {
         assertEquals("http://localhost:8080", url);
     }
 
+    /**
+     * Should return null when getUrl for unknown region.
+     */
     @Test
     public void shouldReturnNullWithNotExistRegion() {
         // given
@@ -59,6 +68,9 @@ public class RegionCacheTest {
         assertNull(url);
     }
 
+    /**
+     * Should return null for any region after clean cache.
+     */
     @Test
     public void shouldReturnNullAfterClearCache() {
         // given
@@ -74,6 +86,9 @@ public class RegionCacheTest {
 
     }
 
+    /**
+     * Should return url with null key.
+     */
     @Test
     public void shouldReturnValueWithNullServiceAndNullRegion() {
         // given
@@ -87,6 +102,9 @@ public class RegionCacheTest {
         assertEquals("value", value);
     }
 
+    /**
+     * Should return null after insert null value in cache.
+     */
     @Test
     public void shouldReturnNullUrlAfterPutWithNullValue() {
         // given
@@ -99,6 +117,11 @@ public class RegionCacheTest {
         assertNull(value);
     }
 
+    /**
+     * Should return null after element had been expired in cache.
+     * 
+     * @throws InterruptedException
+     */
     @Test
     public void shouldReturnNullWhenElementIsExpired() throws InterruptedException {
         // given
