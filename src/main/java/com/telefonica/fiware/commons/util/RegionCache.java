@@ -24,12 +24,17 @@
 
 package com.telefonica.fiware.commons.util;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import net.sf.ehcache.config.CacheConfiguration;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Cache of url regions. Implementations based on ehcache.
@@ -41,26 +46,53 @@ public class RegionCache {
     private Cache cache;
 
     /**
-     * Creates a cache.
+     * The log.
+     */
+    private static Logger log = LoggerFactory.getLogger(RegionCache.class);
+
+    /**
+     * Default constructor. Creates a cache.
      */
     public RegionCache() {
+        this("/ehcache.xml");
+    }
+
+    /**
+     * Creates a cache from config file.
+     * 
+     * @param fileName
+     */
+    public RegionCache(String fileName) {
 
         CacheManager singletonManager;
+        InputStream inputStream = this.getClass().getResourceAsStream(fileName);
         try {
-            InputStream inputStream = this.getClass().getResourceAsStream("/ehcache.xml");
             singletonManager = CacheManager.newInstance(inputStream);
+            cache = singletonManager.getCache(CACHE_NAME);
+            if (cache == null) {
+                throw new Exception("Cache " + CACHE_NAME + " does not exist in ehcache file. Caches list:"
+                        + Arrays.toString(singletonManager.getCacheNames()));
+            }
         } catch (Exception e) {
+            log.error("Error reading ehCache file " + e);
             singletonManager = CacheManager.create();
-            singletonManager.addCache(CACHE_NAME);
-            cache.getCacheConfiguration();
+            if (!singletonManager.cacheExists(CACHE_NAME)) {
+                singletonManager.addCache(CACHE_NAME);
+            }
             cache = singletonManager.getCache(CACHE_NAME);
             CacheConfiguration cacheConfiguration = cache.getCacheConfiguration();
             cacheConfiguration.setTimeToIdleSeconds(300);
-            cacheConfiguration.setTimeToLiveSeconds(300);
-            e.printStackTrace();
+            cacheConfiguration.setTimeToLiveSeconds(600);
 
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    log.error("Error closing ehCache file " + e);
+                }
+            }
         }
-        cache = singletonManager.getCache(CACHE_NAME);
 
     }
 

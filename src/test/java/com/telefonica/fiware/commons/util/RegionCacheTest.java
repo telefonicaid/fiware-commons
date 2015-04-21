@@ -140,4 +140,17 @@ public class RegionCacheTest {
         assertNull(nullValue);
     }
 
+    /**
+     * Should initialize RegionCache without configuration file.
+     */
+    @Test
+    public void shouldInitializeRegionCacheWithoutConfigFile() {
+        // given
+        // when
+        RegionCache regionCache = new RegionCache("invalid");
+        regionCache.putUrl("region", "service", "url1");
+
+        // then
+        assertEquals("url1", regionCache.getUrl("region", "service"));
+    }
 }
