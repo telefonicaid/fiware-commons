@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.telefonica.fiware</groupId>
+    <groupId>com.telefonica.iot</groupId>
     <artifactId>commons</artifactId>
     <packaging>jar</packaging>
     <name>Commons</name>
@@ -15,6 +15,10 @@
     <url>${ciURI}/sites/fiware/${project.artifactId}</url>
 
     <properties>
+
+        <product.area.name>Industrial IoT</product.area.name>
+        <product.name>FIWARE</product.name>
+        <product.release>4.2.3</product.release>
 
         <repoName>fiware-commons</repoName>
         <scmURI>git@github.com:telefonicaid</scmURI>
