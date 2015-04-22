@@ -16,6 +16,10 @@
 
     <properties>
 
+        <product.area.name>Industrial IoT</product.area.name>
+        <product.name>FIWARE</product.name>
+        <product.release>4.2.3</product.release>
+
         <repoName>fiware-commons</repoName>
         <scmURI>git@github.com:telefonicaid</scmURI>
         <ciURI>http://ci-fiware-01.hi.inet</ciURI>
