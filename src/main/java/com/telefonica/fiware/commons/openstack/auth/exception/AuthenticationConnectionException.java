@@ -22,34 +22,27 @@
  * </p>
  */
 
-package com.telefonica.euro_iaas.commons.dao;
+package com.telefonica.fiware.commons.openstack.auth.exception;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 /**
- * Generic exception that is launched whenever a runtime error is launched while using the <code>PlayerDao</code>.
+ * Exception method of the Authentication process to keystone.
  */
 @SuppressWarnings("serial")
-public class DaoRuntimeException extends RuntimeException {
+public class AuthenticationConnectionException extends WebApplicationException {
 
     /**
-     * Constructor of the class.
-     * 
-     * @param cause
-     *            Problem that caused the exception
-     */
-    public DaoRuntimeException(Throwable cause) {
-        super(cause);
-    }
-
-    /**
-     * Constructor of the class.
+     * Constructor.
      * 
      * @param message
-     *            Message describing the problem
-     * @param cause
-     *            Problem that caused the exception
+     *            The information of the error.
      */
-    public DaoRuntimeException(String message, Throwable cause) {
-        super(message, cause);
+    public AuthenticationConnectionException(final String message) {
+        super(Response.status(Status.SERVICE_UNAVAILABLE).type(MediaType.APPLICATION_XHTML_XML).entity(message).build());
     }
 
 }

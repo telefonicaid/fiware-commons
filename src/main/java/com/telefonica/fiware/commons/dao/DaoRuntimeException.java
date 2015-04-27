@@ -22,50 +22,34 @@
  * </p>
  */
 
-package com.telefonica.euro_iaas.commons.dao;
+package com.telefonica.fiware.commons.dao;
 
 /**
- * Exception that will be launched when an invalid entity is persisted. An invalid entity is: <li>
- * <ul>
- * An entity with a not nullable field set to null
- * </ul>
- * <ul>
- * An entity with a duplicated value of an unique field
- * </ul>
- * </li>
+ * Generic exception that is launched whenever a runtime error is launched while using the <code>PlayerDao</code>.
  */
 @SuppressWarnings("serial")
-public class InvalidEntityException extends Exception {
-
-    private Object entity;
+public class DaoRuntimeException extends RuntimeException {
 
     /**
      * Constructor of the class.
      * 
-     * @param entity
-     *            The requested entity
-     */
-    public InvalidEntityException(Object entity) {
-        this.entity = entity;
-    }
-
-    /**
-     * Constructor of the class.
-     * 
-     * @param entity
-     *            The requested entity
      * @param cause
-     *            Parent exception
+     *            Problem that caused the exception
      */
-    public InvalidEntityException(Object entity, Exception cause) {
+    public DaoRuntimeException(Throwable cause) {
         super(cause);
-        this.entity = entity;
     }
 
-    @Override
-    public String getMessage() {
-        return "Trying to persist an invalid " + entity.getClass().getSimpleName() + " entity. Caused by: "
-                + getCause();
+    /**
+     * Constructor of the class.
+     * 
+     * @param message
+     *            Message describing the problem
+     * @param cause
+     *            Problem that caused the exception
+     */
+    public DaoRuntimeException(String message, Throwable cause) {
+        super(message, cause);
     }
 
 }
