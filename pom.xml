@@ -9,7 +9,7 @@
         Provides a commons classes
     </description>
 
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.0</version>
 
     <url>${ciURI}/sites/fiware/${project.artifactId}</url>
 
@@ -17,7 +17,7 @@
 
         <product.area.name>Industrial IoT</product.area.name>
         <product.name>FIWARE</product.name>
-        <product.release>4.2.3</product.release>
+        <product.release>4.3.1</product.release>
 
         <repoName>fiware-commons</repoName>
         <scmURI>git@github.com:telefonicaid</scmURI>
