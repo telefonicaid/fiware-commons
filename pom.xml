@@ -291,6 +291,7 @@
                             <exclude>**/*Test*.class</exclude>
                             <exclude>**/model/**.class</exclude>
                             <exclude>**/bean/**.class</exclude>
+                            <exclude>**/bean/**.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>

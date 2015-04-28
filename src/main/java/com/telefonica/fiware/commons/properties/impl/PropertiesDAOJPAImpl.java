@@ -35,7 +35,7 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.telefonica.fiware.commons.properties.PersistentProperty;
+import com.telefonica.fiware.commons.properties.bean.PersistentProperty;
 
 /**
  * JPA DAO implementation of PropertiesDAO.

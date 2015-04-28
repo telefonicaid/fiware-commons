@@ -42,7 +42,7 @@ import javax.persistence.Query;
 
 import org.junit.Test;
 
-import com.telefonica.fiware.commons.properties.PersistentProperty;
+import com.telefonica.fiware.commons.properties.bean.PersistentProperty;
 
 /**
  * Class for test PropertiesDAOJPAImpl

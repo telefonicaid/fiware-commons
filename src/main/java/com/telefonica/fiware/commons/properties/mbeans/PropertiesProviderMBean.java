@@ -22,7 +22,7 @@
  * </p>
  */
 
-package com.telefonica.fiware.commons.properties;
+package com.telefonica.fiware.commons.properties.mbeans;
 
 import java.util.Iterator;
 import java.util.Properties;
@@ -39,6 +39,8 @@ import javax.management.MBeanException;
 import javax.management.MBeanInfo;
 import javax.management.MBeanOperationInfo;
 import javax.management.ReflectionException;
+
+import com.telefonica.fiware.commons.properties.PropertiesProvider;
 
 /**
  * Utility MBean that exposes a PropertiesUtil through JMX.

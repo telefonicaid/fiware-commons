@@ -45,7 +45,6 @@ import javax.management.NotCompliantMBeanException;
 import org.junit.Test;
 
 import com.telefonica.fiware.commons.properties.PropertiesProvider;
-import com.telefonica.fiware.commons.properties.PropertiesProviderMBean;
 import com.telefonica.fiware.commons.properties.impl.PropertiesDAO;
 import com.telefonica.fiware.commons.properties.impl.PropertiesProviderImpl;
 
@@ -87,10 +86,10 @@ public class MBeanUtilsTest {
     }
 
     /**
-     * Should unregister MBean
+     * Should unRegister MBean
      */
     @Test
-    public void shouldUnregisterMBean() throws MalformedObjectNameException, InstanceNotFoundException,
+    public void shouldUnRegisterMBean() throws MalformedObjectNameException, InstanceNotFoundException,
             MBeanRegistrationException {
         // given
 

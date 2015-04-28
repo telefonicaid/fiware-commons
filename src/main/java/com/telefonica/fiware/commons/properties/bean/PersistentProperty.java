@@ -22,7 +22,7 @@
  * </p>
  */
 
-package com.telefonica.fiware.commons.properties;
+package com.telefonica.fiware.commons.properties.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

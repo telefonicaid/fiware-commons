@@ -41,10 +41,8 @@ public interface PropertiesProviderFactory {
      * @param em
      *            Entity manager needed to connect with the underlying database
      * @return A valid <b>NON</b> transactional properties util object.
-     * @throws PropertiesProviderRuntimeException
-     *             If any error happens
      */
-    PropertiesProvider createPropertiesProvider(EntityManager em) throws PropertiesProviderRuntimeException;
+    PropertiesProvider createPropertiesProvider(EntityManager em);
 
     /**
      * Creates a properties util object.
@@ -56,9 +54,7 @@ public interface PropertiesProviderFactory {
      * @param emf
      *            Entity manager factory that provides access to the entity manager
      * @return A valid transactional properties util object.
-     * @throws PropertiesProviderRuntimeException
-     *             If any error happens
      */
-    PropertiesProvider createPropertiesProvider(EntityManagerFactory emf) throws PropertiesProviderRuntimeException;
+    PropertiesProvider createPropertiesProvider(EntityManagerFactory emf);
 
 }

@@ -29,7 +29,6 @@ import javax.persistence.EntityManagerFactory;
 
 import com.telefonica.fiware.commons.properties.PropertiesProvider;
 import com.telefonica.fiware.commons.properties.PropertiesProviderFactory;
-import com.telefonica.fiware.commons.properties.PropertiesProviderRuntimeException;
 
 /**
  * Implementation of the PropertiesUtilFactory interface.
@@ -39,15 +38,14 @@ public class PropertiesProviderFactoryImpl implements PropertiesProviderFactory 
     /**
      * {@inheritDoc}
      */
-    public PropertiesProvider createPropertiesProvider(EntityManager em) throws PropertiesProviderRuntimeException {
+    public PropertiesProvider createPropertiesProvider(EntityManager em) {
         return new PropertiesProviderImpl(new PropertiesDAOJPAImpl(em));
     }
 
     /**
      * {@inheritDoc}
      */
-    public PropertiesProvider createPropertiesProvider(EntityManagerFactory emf)
-            throws PropertiesProviderRuntimeException {
+    public PropertiesProvider createPropertiesProvider(EntityManagerFactory emf) {
         return new PropertiesProviderTxImpl(emf);
     }
 }

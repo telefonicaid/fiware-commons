@@ -42,11 +42,9 @@ public interface PropertiesProvider {
      * 
      * @param namespace
      *            The namespace of the properties to be load (also the filename)
-     * @return a Properties Object with all the properties that belongs to the namespace
-     * @throws PropertiesProviderRuntimeException
-     *             If any error happens
+     * @return a Properties Object with all the properties that belongs to the namespace If any error happens
      */
-    Properties load(final String namespace) throws PropertiesProviderRuntimeException;
+    Properties load(final String namespace);
 
     /**
      * This method save the Properties object into the database.
@@ -55,10 +53,8 @@ public interface PropertiesProvider {
      *            Object to save on the database
      * @param namespace
      *            The namespace of the object
-     * @throws PropertiesProviderRuntimeException
-     *             If any error happens
      */
-    void store(final Properties properties, final String namespace) throws PropertiesProviderRuntimeException;
+    void store(final Properties properties, final String namespace);
 
     /**
      * Get the list with every namespaces.
